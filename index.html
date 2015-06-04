@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Leap RPS</title>
+<link rel="stylesheet" type="text/css" href="assets/style.css">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+<script src="rps.js"></script>
+<script src="leap.js"></script>
+</head>
+<body>
+<img class="logo" src="assets/img/logo.png"/>
+<div id="connection" class="hidden">WebSocket not connected</div>
+<div id="board">
+  <div class="before-game">
+    <button id="play"> Play </button>
+  </div>
+  <div class="in-game hidden">
+    <span id="counter"></span>
+  </div>
+  <div class="after-game hidden">
+    <div class="results-container">
+      <div class="result">
+        <div id="player"></div>
+        <p>Player</p>
+      </div>
+      <div class="result">
+        <div id="bot"></div>
+        <p>Computer</p>
+      </div>
+    </div>
+    <span id="winner"></span> is the winner.
+  </div>
+</div>
+</body>
+</html>

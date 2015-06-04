@@ -1,0 +1,73 @@
+@font-face {
+    font-family: grinched;
+    src: url("fonts/Grinched.ttf");
+}
+
+* {
+  font-family: grinched;
+}
+
+body {
+  background: url('img/bg.png');
+}
+
+.logo {
+    display: block;
+    margin: 0 auto;
+}
+
+.hidden {
+  display: none;
+}
+
+#board {
+  margin-top: 100px;
+}
+
+#play {
+  width: 250px;
+  font-size: 40px;
+  text-transform: uppercase;
+  height: 70px;
+  line-height: 80px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  border: none;
+  background: #FF572D;
+  cursor: pointer;
+  box-shadow: 4px 4px 0 #EC2F00;
+}
+
+#play:hover {
+  box-shadow: none;
+  color: rgba(0,0,0, 0.9);
+  position: relative;
+  left: 4px;
+  top: 4px;
+}
+
+#counter {
+  opacity: 0;
+  font-size: 200px;
+  display: block;
+  text-align: center;
+}
+
+#counter.ready {
+  opacity: 1;
+  transition: opacity 0.2s;
+  color: #FF9326;
+}
+
+#counter.steady {
+  opacity: 1;
+  transition: opacity 0.2s;
+  color: #FF26FF;
+}
+
+#counter.go {
+  opacity: 1;
+  transition: opacity 0.2s;
+  color: #00B22D;
+}
