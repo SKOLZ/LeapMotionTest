@@ -10,7 +10,70 @@ RPS = {
 	last_result: null,
   sneaky_mode: false,
 	display: function(leapmotion_frame) {
-		if (!RPS.active) return;
+		 if(!RPS.active && leapmotion_frame.gestures != null && leapmotion_frame.gestures.length > 0){
+	    leapmotion_frame.gestures.forEach(function(gesture){
+	        switch (gesture.type){
+	          case "circle":
+	              console.log("Circle Gesture");
+	               	$('#player, #bot').removeClass();
+					  	var counter=3;
+						$('#counter').html(counter);
+					  	var interval = setInterval(function() {
+					    	counter--;
+					    	$('#counter').html(counter);
+					    	if (counter === 0) {
+					    		clearInterval(interval);
+					    		console.log('show!!');
+					    		RPS.active = true;
+					    	}
+						}, 1000);
+	              break;
+	          case "keyTap":
+	              console.log("Key Tap Gesture");
+	              break;
+	          case "screenTap":
+	              console.log("Screen Tap Gesture");
+	              RPS.active = true;
+	              $('.before-game').addClass('hidden');
+				    $('.in-game').removeClass('hidden');
+				  	$('#player, #bot').removeClass();
+				  	var counter=6;
+					$('#counter').html("READY");
+				  	var interval = setInterval(function() {
+				    	counter--;
+				      if (counter == 5) {
+				        $('#counter').addClass('ready');
+				      }
+				      if (counter == 4) {
+				        $('#counter').removeClass('ready');
+				        $('#counter').html("STEADY");
+				      }
+				      if (counter == 3) {
+				        $('#counter').addClass('steady');
+				      }
+				      if (counter == 2) {
+				        $('#counter').removeClass('steady');
+				        $('#counter').html("GO!");
+				      }
+				      if (counter == 1) {
+				        $('#counter').addClass('go');
+				      }
+				    	if (counter === 0) {
+				    		clearInterval(interval);
+				        $(".in-game").addClass('hidden');
+				        $(".after-game").removeClass('hidden');
+				    		RPS.active = true;
+				    	}
+					}, 500);
+	              break;
+	          case "swipe":
+	              console.log("Swipe Gesture");
+	              break;
+	        }
+	    });
+	    return;
+	  }
+	  if(RPS.active){
 		var result = null;
 		if (leapmotion_frame.hands !== undefined){
 			if (leapmotion_frame.hands.length == 1 
@@ -58,6 +121,8 @@ RPS = {
 			$('#fingers').html(leapmotion_frame.pointables.length); 
 
 		}
+		RPS.active = false;
+	}
 	},
 	bot_result: function (){
 		switch (Math.floor(Math.random() * 3 + 1)){

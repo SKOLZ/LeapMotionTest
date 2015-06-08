@@ -81,6 +81,6 @@ $(document).ready(function () {
 $(document).keyup(function(e){
   if(e.keyCode == 83){
     RPS.sneaky_mode = true;
-    console.log('Sneaky mode activated ;)');
+    console.log('Sneaky mode ;)');
   }
 });

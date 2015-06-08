@@ -71,3 +71,21 @@ body {
   transition: opacity 0.2s;
   color: #00B22D;
 }
+
+.rock {
+  background-image:url('img/rock.png');
+  background-repeat: no-repeat;
+}
+.paper {
+  background-image:url('img/paper.png');
+  background-repeat: no-repeat;
+}
+.scissors {
+  background-image:url('img/scissors.png');
+  background-repeat: no-repeat;
+}
+
+#player, #bot  {
+  width:123px;
+  height:179px;
+}
