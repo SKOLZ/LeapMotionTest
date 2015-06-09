@@ -13,8 +13,7 @@ function initWS() {
 
 	// On successful connection
 	ws.onopen = function(event) {
-	  document.getElementById("main").style.visibility = "visible";
-	  document.getElementById("connection").innerHTML = "WebSocket connection open!";
+    $('#connection').addClass('hidden');
 	};
 
 	// On message received
@@ -28,8 +27,8 @@ function initWS() {
 	// On socket close
 	ws.onclose = function(event) {
 	  ws = null;
-	  document.getElementById("main").style.visibility = "hidden";
-	  document.getElementById("connection").innerHTML = "WebSocket connection closed";
+	  document.getElementById("board").style.visibility = "hidden";
+    $('#connection').removeClass('hidden');
 	}
 
 	//On socket error
@@ -41,41 +40,6 @@ function initWS() {
 
 $(document).ready(function () {
   initWS();
-
-  $('#play').click(function(){
-    $('.before-game').addClass('hidden');
-    $('.in-game').removeClass('hidden');
-  	$('#player, #bot').removeClass();
-  	var counter=6;
-	$('#counter').html("READY");
-  	var interval = setInterval(function() {
-    	counter--;
-      if (counter == 5) {
-        $('#counter').addClass('ready');
-      }
-      if (counter == 4) {
-        $('#counter').removeClass('ready');
-        $('#counter').html("STEADY");
-      }
-      if (counter == 3) {
-        $('#counter').addClass('steady');
-      }
-      if (counter == 2) {
-        $('#counter').removeClass('steady');
-        $('#counter').html("GO!");
-      }
-      if (counter == 1) {
-        $('#counter').addClass('go');
-      }
-    	if (counter === 0) {
-    		clearInterval(interval);
-        $(".in-game").addClass('hidden');
-        $(".after-game").removeClass('hidden');
-    		RPS.active = true;
-    	}
-	}, 500);
-  });
-
 });
 
 $(document).keyup(function(e){

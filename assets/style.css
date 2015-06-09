@@ -20,7 +20,7 @@ body {
   display: none;
 }
 
-#board {
+.before-game, .in-game {
   margin-top: 100px;
 }
 
@@ -72,20 +72,17 @@ body {
   color: #00B22D;
 }
 
-.rock {
-  background-image:url('img/rock.png');
-  background-repeat: no-repeat;
-}
-.paper {
-  background-image:url('img/paper.png');
-  background-repeat: no-repeat;
-}
-.scissors {
-  background-image:url('img/scissors.png');
-  background-repeat: no-repeat;
+.results-container {
+  text-align: center;
 }
 
-#player, #bot  {
-  width:123px;
-  height:179px;
+.result {
+  display: inline-block;
+}
+
+.after-game {
+  text-align: center;
+}
+
+#winner {
 }
