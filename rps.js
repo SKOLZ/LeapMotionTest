@@ -75,11 +75,20 @@ RPS = {
 						$('#bot-' + bot_result).addClass('visible');
 	          $('#player-' + this.result).addClass('visible');
 	          this.result = null;
+				} else {
+					this.active = false;
+					bot_result = this.bot_result();
+					$('#winner').html("You... didn't chose anything?");
+					this.game_in_progress = false;
+					this.circle_enabled = true;
+					$('#bot-' + bot_result).removeClass('hidden');
+					$('#player-nope').removeClass('hidden');
+					$('#bot-' + bot_result).addClass('visible');
+					$('#player-nope').addClass('visible');
+					this.result = null;
 				}
 			}
 		}
-		//EL PLAYER NO SACO NADA VER QUE HACEMOS
-		RPS.active = false;
 	},
 	bot_result: function () {
 		switch (Math.floor(Math.random() * 3 + 1)){
@@ -141,12 +150,14 @@ RPS = {
 		$('#player-scissors').addClass("hidden");
 		$('#player-rock').addClass("hidden");
 		$('#player-paper').addClass("hidden");
+		$('#player-nope').addClass("hidden");
 		$('#bot-scissors').addClass("hidden");
 		$('#bot-rock').addClass("hidden");
 		$('#bot-paper').addClass("hidden");
 		$('#player-scissors').removeClass("visible");
 		$('#player-rock').removeClass("visible");
 		$('#player-paper').removeClass("visible");
+		$('#player-nope').removeClass("visible");
 		$('#bot-scissors').removeClass("visible");
 		$('#bot-rock').removeClass("visible");
 		$('#bot-paper').removeClass("visible");
