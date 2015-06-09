@@ -7,24 +7,31 @@ RPS = {
 	},
 	active: false,
 	result: null,
+	circle_enabled: false,
+	game_in_progress: false,
 	display: function(leapmotion_frame) {
-		if (!RPS.active && leapmotion_frame.gestures != null && leapmotion_frame.gestures.length > 0) {
+		if (!this.game_in_progress && leapmotion_frame.gestures != null && leapmotion_frame.gestures.length > 0) {
 	    var gesture = leapmotion_frame.gestures[0];
 			switch (gesture.type) {
 	      case "circle":
-					this.hide_hands();
-					if (lastTime + 1000 < +new Date) {
-						this.play_da_game();
-					  lastTime = +new Date;
-			    }
-
+					if (this.circle_enabled) {
+						this.game_in_progress = true;
+						this.hide_hands();
+						if (lastTime + 1000 < +new Date) {
+							this.play_da_game();
+						  lastTime = +new Date;
+				    }
+					}
 					break;
         case "screenTap":
-					this.hide_hands();
-					if (lastTime + 1000 < +new Date) {
-						this.play_da_game();
-					  lastTime = +new Date;
-			    }
+					if (!this.circle_enabled) {
+						this.game_in_progress = true;
+						this.hide_hands();
+						if (lastTime + 1000 < +new Date) {
+							this.play_da_game();
+						  lastTime = +new Date;
+				    }
+					}
 	        break;
         case "keyTap":
         case "swipe":
@@ -61,10 +68,13 @@ RPS = {
 						} else {
 							$('#winner').html("It's a tie!");
 						}
-						console.log(bot_result);
-	          $('#bot-' + bot_result).removeClass('hidden');
-	          $('#player-' + RPS.result).removeClass('hidden');
-	          RPS.result = null;
+						this.game_in_progress = false;
+						this.circle_enabled = true;
+					  $('#bot-' + bot_result).removeClass('hidden');
+	          $('#player-' + this.result).removeClass('hidden');
+						$('#bot-' + bot_result).addClass('visible');
+	          $('#player-' + this.result).addClass('visible');
+	          this.result = null;
 				}
 			}
 		}
@@ -134,5 +144,11 @@ RPS = {
 		$('#bot-scissors').addClass("hidden");
 		$('#bot-rock').addClass("hidden");
 		$('#bot-paper').addClass("hidden");
+		$('#player-scissors').removeClass("visible");
+		$('#player-rock').removeClass("visible");
+		$('#player-paper').removeClass("visible");
+		$('#bot-scissors').removeClass("visible");
+		$('#bot-rock').removeClass("visible");
+		$('#bot-paper').removeClass("visible");
 	}
 }

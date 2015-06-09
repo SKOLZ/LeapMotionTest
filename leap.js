@@ -40,6 +40,9 @@ function initWS() {
 
 $(document).ready(function () {
   initWS();
+  $("#play").click(function () {
+    RPS.play_da_game();
+  });
 });
 
 $(document).keyup(function(e){
