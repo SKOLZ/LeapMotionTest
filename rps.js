@@ -54,7 +54,6 @@ RPS = {
 							$('#winner').html("It's a tie!");
 						}
 						console.log(bot_result);
-						this.hide_hands();
 	          $('#bot-' + bot_result).removeClass('hidden');
 	          $('#player-' + RPS.result).removeClass('hidden');
 	          RPS.result = null;
@@ -115,6 +114,7 @@ RPS = {
 				RPS.active = true;
 				clearInterval(interval);
 				$(".in-game").addClass('hidden');
+				$('#counter').removeClass('go');
 				$(".after-game").removeClass('hidden');
 			}
 		}, 500);
