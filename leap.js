@@ -1,5 +1,4 @@
 var ws;
-var lastTime = 0;
 
   // Support both the WebSocket and MozWebSocket objects
   if ((typeof(WebSocket) == 'undefined') &&
@@ -20,10 +19,7 @@ function initWS() {
 	// On message received
 	ws.onmessage = function(event) {
 	  var obj = JSON.parse(event.data);
-    if (lastTime + 1500 < +new Date) {
-        RPS.display(obj);
-        lastTime = +new Date;
-    }
+    RPS.display(obj);
 	  var str = JSON.stringify(obj, undefined, 2);
 	  //document.getElementById("output").innerHTML = '<pre>' + str + '</pre>';
 	};

@@ -1,3 +1,4 @@
+var lastTime = 0;
 RPS = {
 	results: {
 		rock: 'rock',
@@ -12,11 +13,18 @@ RPS = {
 			switch (gesture.type) {
 	      case "circle":
 					this.hide_hands();
-					this.play_da_game();
+					if (lastTime + 1000 < +new Date) {
+						this.play_da_game();
+					  lastTime = +new Date;
+			    }
+
 					break;
         case "screenTap":
 					this.hide_hands();
-					this.play_da_game();
+					if (lastTime + 1000 < +new Date) {
+						this.play_da_game();
+					  lastTime = +new Date;
+			    }
 	        break;
         case "keyTap":
         case "swipe":
